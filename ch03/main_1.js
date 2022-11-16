@@ -1,4 +1,63 @@
-// author 관련 url 추가
+// express 사용
+var urlm = require('url');
+var qs = require('querystring');
+var db = require('./lib/db.js');
+var topic = require('./topic.js');
+var author = require('./author.js');
+var express = require('express');
+var app = express();
+
+
+app.get('/', function(req, res) {
+    topic.home(req, res);
+});
+
+app.get('/page/:pageId', function(req, res){ // pageId는 변수
+    topic.page(req, res);
+});
+
+app.get('/create', function(req, res) {
+    topic.create(req, res);
+});
+
+app.post('/create_process', function(req, res) {
+    topic.create_process(req, res);
+});
+
+app.get('/update/:pageId', function(req, res) {
+    topic.update(req, res);
+});
+
+app.post('/update_process', function(req, res) {
+    topic.update_process(req, res);
+});
+
+app.post('/delete_process', function(req, res) {
+    topic.delete_process(req, res);
+});
+
+app.get('/author', function(req, res) {
+    author.home(req, res);
+});
+
+app.post('/author/create_process', function(req, res) {
+    author.create_process(req, res);
+});
+
+app.get('/author/update/:pageId', function(req, res) {
+    author.update(req, res);
+});
+
+app.post('/author/update_process', function(req, res) {
+    author.update_process(req, res);
+});
+
+app.post('/author/delete_process', function(req, res) {
+    author.delete_process(req, res);
+});
+app.listen(3000, () => console.log('example app listening on port 3000'));
+
+/* 
 var http = require('http');
 var urlm = require('url');
 var topic = require('./topic.js');
@@ -7,39 +66,6 @@ const port = 3000;
 
 var app = http.createServer( function(req, res) { 
     var url = req.url;
-    console.log('url:\n',url); 
-    // /?id=3
-    console.log('urlm.parse(url, true):\n',urlm.parse(url, true));
-/*     Url {
-        protocol: null,
-        slashes: null,
-        auth: null,
-        host: null,
-        port: null,
-        hostname: null,
-        hash: null,
-        search: '?id=3',
-        query: [Object: null prototype] { id: '3' },    // object
-        pathname: '/',
-        path: '/?id=3',
-        href: '/?id=3'
-      } */
-    console.log('urlm.parse(url, false):\n',urlm.parse(url, false));
-/*  Url {
-  protocol: null,
-  slashes: null,
-  auth: null,
-  host: null,
-  port: null,
-  hostname: null,
-  hash: null,
-  search: '?id=3',
-  query: 'id=3',                // string
-  pathname: '/',
-  path: '/?id=3',
-  href: '/?id=3'
-} */
-// urlm.parse(url, true) : url을 파싱하되, querystring도 함께 파싱(=true)
     var queryData = urlm.parse(url, true).query; 
     var pathname = urlm.parse(url, true).pathname;
 
@@ -73,3 +99,4 @@ var app = http.createServer( function(req, res) {
     res.end('Not found');}
 });
 app.listen(port);
+ */

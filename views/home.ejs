@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WEB1 - <%= title %></title>
+</head>
+<body>
+    <h1><a href="/">WEB</a></h1><hr>
+        <a href="/author">author</a>
+
+        <ul>
+            <!-- JS 코드 / html 요소는 <% %> 외부에 -->
+            <% i = 0; 
+                while(i < list.length) {
+            %>
+                <li><a href="/page/<%=list[i].id %>"><%= list[i].title %></a></li>
+            <% i +=1;
+                }
+            %>
+        </ul>
+        <%- control %>
+        <!-- 
+            <%= %>: 내용(값)이 글자로 나옴. 
+            <%- %>: html 태그를 태그 기능을 할 수 있도록 함
+         -->
+        <%- body %>
+</body>
+</html>
