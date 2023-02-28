@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>검색화면</h1>
+
+    <form action="/book/search" method="post">
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Book Search</label>
+            <div class="col-sm-5">
+                <input type="id" class="form-control" placeholder="책 제목을 입력하세요" name="keyword" maxlength="50">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">검색</button>
+    </form>
+    <p>
+        <% if (listyn == "Y")
+        {
+            %>
+        <table class="table">
+            <% var i =0;
+            while(i < results.length) {
+                %>
+            <tr><td><img src="<%= results[i].img%>" style="width:100px;height:100px;"></td>
+            <td><a href="/book_detail/<%= results[i].id%>"><%= results[i].name%></a></td>
+        <td><%= results[i].author%></td><td><%= results[i].price%>원</td></tr>
+        <%
+        i++;
+            }
+            %>
+            </table>
+            <% 
+        } %>
+    </p>
+</body>
+</html>

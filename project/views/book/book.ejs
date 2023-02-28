@@ -1,0 +1,33 @@
+
+    <h1> <%= kind %>  </h1> 
+    <table class="table">
+        <% 
+        var i =0;
+        while (i < results.length ) {
+        %>
+        <tr><td><img src="<%= results[i].img %>" style="width:100px;height:100px; "></td>
+            <td><a href="/detail/<%= results[i].id %>"><%= results[i].name %></a></td><td><%= results[i].description %></td><td><%= results[i].author %></td><td><%= results[i].price %>원</td>
+            </tr>
+        <%
+           i++;
+        }
+        %>
+    </table>
+
+    <% if (totalpages > 1) { %>
+        <div style="text-align:center;">
+        <%
+        var j = 1;
+        while (j <= totalpages) {
+            if(j == pageNum){ %>
+                <span style="font-weight : bold;"><%=j%></span> &nbsp;&nbsp;
+            <% } else { %>
+                <span><a href="/book/<%=j%>"><%=j%></a></span> &nbsp;&nbsp;
+            <%     } 
+            j++;
+        } %>
+    </div>
+    <%
+    }
+    %>
+    

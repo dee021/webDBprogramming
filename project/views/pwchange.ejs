@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>비밀번호 변경</h1>
+
+    <form action="/pwchange_process" method="post">
+        <div class="row mb-3">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">새 비밀번호</label>
+            <div class="col-sm-5">
+                <input type="password" class="form-control" id="inputPassword3" name="newpw" maxlength="20">
+            </div>
+        </div>
+        <input type="hidden" class="form-control" value="<%= pw %>" name="pw" maxlength="20">
+        <button type="submit" class="btn btn-primary">변경</button>
+    </form>
+</body>
+</html>

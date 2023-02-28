@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>사용자 생성</h1>
+
+    <% if (kindOfDoc == 'C') { %>
+    <form action="/user/create_process" method="post">
+    <% } else { %>
+    <form action="/user/update_process/<%=pId%>" method="post">
+    <% } %>
+    <p>ID *&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; : <input type="text" name="loginid" value="<%=loginid%>" style="width:400px; border-color:antiquewhite;"  maxlength="20" required></p>
+    <p>비밀번호 * : <input type="password" name="pw" value="<%=pw%>" style="width:400px; border-color:antiquewhite;"  maxlength="20" required></p>
+    <p>이름 *&ensp;&ensp;&ensp;&ensp; : <input type="text" name="name" value="<%=name%>" style="width:400px; border-color:antiquewhite;" required></p>
+    <p>주소&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: <input type="text" name="addr" value="<%=addr%>" style="width:400px; border-color:antiquewhite;"></p>
+    <p>전화번호&ensp;&ensp;: <input type="text" name="tel" value="<%=tel%>" style="width:400px; border-color:antiquewhite;" placeholder="010-1234-5678"></p>
+    <p>생년월일 * : <input type="text" name="birth" value="<%=birth%>" style="width:400px; border-color:antiquewhite;" placeholder="yyyymmdd" required></p>
+    <p>CLASS *&ensp;&ensp;&ensp;: <select name="cls" required>
+        <% var i= 0;
+        var classes = [{values:'C', text:'고객'}, {values:'A', text:'관리자'},{values:'M', text:'경영자'}];
+        while (i< 3) { %>
+        <%  if (usercls == classes[i].values) { %>
+        <option value="<%= classes[i].values %>" selected>
+        <% } else { %>
+            <option value="<%= classes[i].values %>">
+        <% } %>
+        <%= classes[i].text %></option>
+        <%
+            i++;
+        }
+        %>
+    </select>
+    </p>
+    <p>등급 *&ensp;&ensp;&ensp;&ensp; : <select name="grd" required>
+        <% i= 0;
+        var grds = [{values:'G', text:'골드'}, {values:'S', text:'실버'},{values:'B', text:'브론즈'}];
+        while (i< 3) { %>
+        <%  if (grd == grds[i].values) { %>
+        <option value="<%= grds[i].values %>" selected>
+        <% } else { %>
+            <option value="<%= grds[i].values %>">
+        <% } %>
+        <%= grds[i].text %></option>
+        <%
+            i++;
+        }
+        %>
+    </select>
+    </p>
+    
+    
+    <p><input type="submit"></p>
+    </form>
+</body>
+</html>

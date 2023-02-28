@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>USER</h1>
+    <table class="table table-sm table-bordered" style="width:800px;">
+        <thead><tr><th>ID</th><th>password</th><th>이름</th><th>주소</th><th>전화번호</th><th>생년월일</th><th>CLASS</th><th>등급</th></tr></thead>
+        <%
+            var i = 0;
+            while(i < results.length) {
+        %>
+        <!--  -->
+            <tr><td class="td td-sm"><%= results[i].loginid %></td>
+                <td><%=results[i].password %></td>
+                <td><%= results[i].name %></td>
+                <td><%= results[i].address %></td>
+                <td><%= results[i].tel %></td>
+                <td><%= results[i].birth %></td>
+                <td><%= results[i].class %></td>
+                <td><%= results[i].grade %></td></tr>
+        <%
+            i++;
+            }
+        %>
+    </table>
+</body>
+</html>

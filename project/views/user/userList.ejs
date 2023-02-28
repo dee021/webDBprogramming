@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>사용자 목록</h1>
+    <table class="table table-sm table-bordered" style="width:800px">
+        <thead><tr><td>ID</td><td>비밀번호</td><td>이름</td><td>주소</td><td>전화번호</td><td>생년월일</td><td>CLASS</td><td>등급</td><td>수정</td><td>삭제</td></tr></thead>
+    <%
+    var i = 0;
+    while(i < results.length) {
+        %>
+        <tr><td class="td td-sm"><%= results[i].loginid%></td>
+        <td><%= results[i].password%></td>
+        <td><%= results[i].name%></td>
+        <td><%= results[i].address%></td>
+        <td><%= results[i].tel%></td>
+        <td><%= results[i].birth%></td>
+        <td><%= results[i].class%></td>
+        <td><%= results[i].grade%></td>
+    <td><a href="/user/update/<%=results[i].loginid%>">update</a></td>
+    <td><a href="/user/delete_process/<%=results[i].loginid%>">delete</a></td>
+</tr>
+<%
+i++;
+    }
+    %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>도서 생성</h1>
+    <% if (kindOfDoc == 'C') { %>
+    <form action="/book/create_process" method="post">
+    <% } else { %>
+    <form action="/book/update_process/<%=pId%>" method="post">
+    <% } %>
+    <p>도서명* : <input type="text" name="name" value="<%=name%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>출판사* :<input type="text" name="publisher" value="<%=publisher%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>저자* :<input type="text" name="author" value="<%=author%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>재고* :<input type="text" name="stock" value="<%=stock%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>출판일자* :<input type="text" name="pubdate" value="<%=pubdate%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>페이지 번호 :<input type="text" name="pagenum" value="<%=pagenum%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>ISBN* :<input type="text" name="ISBN" value="<%=ISBN%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>ebook* : <select name="ebook">
+        <option value="N">N</option>
+        <%  if (ebook == 'Y') { %> <option value="Y" selected>
+        <% } else { %>  <option value="Y">
+        <% } %>Y</option>
+    </select></p>
+    <p>도서분류: <input type="text" name="kdc" value="<%=kdc%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>이미지: <input type="text" name="img" value="<%=img%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>가격: <input type="text" name="price" value="<%=price%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>국가* :<input type="text" name="nation" value="<%=nation%>" style="width:400px; border-color:antiquewhite;" placeholder="title"></p>
+    <p>설명 :<textarea name="description" placeholder="description" cols="100" style="border-color:antiquewhite;"><%=description%></textarea></p>
+    <p><input type="submit"></p>
+    </form>
+</body>
+</html>

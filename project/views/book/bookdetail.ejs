@@ -1,0 +1,57 @@
+
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+      qytChange = function(e) {
+            const price = document.getElementById('price');
+            const chgTarget = document.getElementById('target');
+            chgTarget.innerText = price.value * e.target.value;
+        }
+
+      prevEnterSubmit = function(e) {
+          if (e.code === 'Enter') {
+              e.preventDefault();
+              if (parseInt(e.target.max) < parseInt(e.target.value)){
+                    e.target.value = e.target.max;
+                }
+                qytChange(e);
+          }
+        }
+    </script>
+   </head>
+   <body>
+    <h1><%= name %></h1>
+    <form>
+    <input type="hidden" name="bookid" value="<%= bookid %>">
+    <table class="table">
+      <tr><td colspan="2">
+        <img src="<%= img %>" style="width: 200px;height:300px; "></td></tr>
+      <tr><td>저자 : <%= author %></td><td><%= price %>원</td></tr>
+      <tr><td><span id="target">0</span>원<input type="hidden" name="price" id="price" value="<%= price%>"></td>
+        <% if (loggined === true) { 
+          if (cls === 'C') {%>
+        <td >수량 : <input type="number" name="qty" min="1" onChange="qytChange(event)" required onkeypress="prevEnterSubmit(event)"></td></tr>
+      <tr>
+        <td>
+                 <button type="submit" formaction = "/cart/create_process"  formmethod="post">장바구니</button>
+          </td>
+          <td>
+                 <button type="submit" formaction = "/purchase_process" formmethod="post" onclick="return confirm('<%= name%>을 구매합니다.');">구매</button>
+          </td>
+      </tr>
+    </form>
+    <% } else { %>
+      <tr><td><button type="submit" formaction = "/book/update/<%= bookid %>" formmethod="get">제품 수정</button></td>
+        <td><button type="submit" formaction = "/book/delete_process/<%= bookid %>" formmethod="post" onclick="return confirm('<%= name%>을 삭제합니다.');">제품 삭제</button></td>
+      </tr>
+      <% }} else { %>
+        <td >수량 : <input type="number" name="qty" min="1" onChange="qytChange(event)"></td></tr>
+      <tr><td>구매는 로그인이 필요합니다. <button type="submit" formaction = "/login" formmethod="get">로그인</button></td>
+      </tr>
+      <% } %>
+    </table>
+   </body>
+   </html>

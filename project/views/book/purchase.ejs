@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Document</title>
+</head>
+<body>
+ <h1><%= kind%></h1>
+ <% if (cls === 'C') {
+  if(!results.length) { %>
+  <div style="text-align:center;">
+    <br><br>
+<h4>구매 내역이 없습니다.</h4><br>
+<form action="/book/1" method="get">
+    <button type="submit" style="background-color:dodgerblue;color:white;width:100px;height: 40px;border-radius: 10px;">상품보기</button>
+</form></div>
+ <% } else {%> 
+ <table class="table">
+   <% var i = 0;
+  while(i < results.length) {%>
+   <tr><td colspan="2">
+     <img src="<%= results[i].img %>" style="width: 100px;height:120px; "></td>
+   <td><p style="font-size:20px; font-weight: bold;"><%= results[i].name %></p><span><%= results[i].author %></span></td>
+   <td><p style="font-size:20px; font-weight: bold;"><%= results[i].price %>원</p><span><%=results[i].perPrice%>원 X <%=results[i].qty%>권</span></td>
+   <td>
+    <% if (results[i].cancel === 'N') { %>
+    <form action="/purchase/cancel" method="post">
+      <input type="hidden" name="purid" value="<%= results[i].purchaseid %>">
+      <input type="hidden" name="bookid" value="<%= results[i].bookid %>">
+              <button type="submit">구매 취소</button>
+            </form>
+       <% } else { 
+        if (results[i].refund === 'N') { %>
+          <p style="color:red">환불 예정</p>
+          <% } else {%>
+              환불 완료
+          <% }} %>
+       </td>
+   </tr>
+   <% i++;
+  } %>
+ </table>
+<% }} else { %>
+  <table class="table">
+    <thead><tr><th>고객아이디</th><th>상품</th><th>가격</th><th>상태</th></tr></thead>
+    <% var i = 0;
+    while(i < results.length) {%>
+     <tr><td>
+       <%= results[i].custid%></td>
+     <td><p style="font-size:20px; font-weight: bold;"><%= results[i].name %></p><span><%= results[i].author %></span></td>
+     <td><p style="font-size:20px; font-weight: bold;"><%= results[i].price %>원</p><span><%=results[i].perPrice%>원 X <%=results[i].qty%>권</span></td>
+     <td>
+      <% if (results[i].cancel === 'N') { %>
+        수취
+         <% } else { 
+          if (results[i].refund === 'N') { %>
+            <form action="/purchase/refund" method="post">
+              <input type="hidden" name="purid" value="<%= results[i].purchaseid %>">
+                      <button type="submit">환불</button>
+                    </form>
+            <% } else {%>
+                환불 완료
+            <% }} %>
+         </td>
+     </tr>
+     <% i++;
+    } %>
+   </table>
+<%} %>
+</body>
+</html>
